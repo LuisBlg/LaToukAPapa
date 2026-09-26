@@ -1,0 +1,33 @@
+<div class="container">
+
+  <h1>Mes messages</h1>
+
+  <div class="form">
+    <input
+      type="text"
+      [(ngModel)]="newMessage"
+      placeholder="Écrire un message..."
+      (keyup.enter)="addMessage()"
+    >
+
+    <button (click)="addMessage()">
+      Ajouter
+    </button>
+  </div>
+
+  <div class="messages">
+
+    @if (messages.length === 0) {
+      <p>Aucun message pour le moment.</p>
+    }
+
+    @for (message of messages; track message.id) {
+      <div class="message">
+        <strong>#{{ message.id }}</strong>
+        {{ message.content }}
+      </div>
+    }
+
+  </div>
+
+</div>
