@@ -1,10 +1,109 @@
-/* ---------- PARTIE 2 : NOUVEAU DESIGN DU CLASSEMENT (BLEU NUIT) ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@500;700&display=swap');
+
+/* ---------- PARTIE 1 : ÉCRAN D'ENTRÉE (Bouteille) ---------- */
+.entry-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  overflow: hidden;
+  background: transparent;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.title {
+  position: absolute;
+  top: 6vh;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  margin: 0;
+  text-align: center;
+  pointer-events: none;
+  transition: opacity .7s ease, transform .7s ease;
+}
+
+.title span {
+  display: block;
+  font: 500 clamp(14px, 2.4vw, 30px) 'Cinzel', Georgia, serif;
+  letter-spacing: .38em;
+  text-transform: uppercase;
+  color: #fff3dc;
+  text-shadow: 0 2px 14px rgba(120, 40, 70, .6);
+}
+
+.title strong {
+  display: block;
+  font: 900 clamp(52px, 10vw, 150px)/1.05 'Cinzel Decorative', Georgia, serif;
+  letter-spacing: .03em;
+  background: linear-gradient(#fff8e2 20%, #ffc36e 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 5px 0 #7a2f4f) drop-shadow(0 0 30px rgba(255, 190, 120, .6));
+}
+
+.go .title {
+  opacity: 0;
+  transform: translateY(-30px) scale(.96);
+}
+
+#bottle {
+  cursor: pointer;
+  outline: none;
+}
+
+#bottle:focus-visible .bottle-art {
+  filter: drop-shadow(0 0 10px #fff3b8);
+}
+
+.bottle-art {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: bob 4s ease-in-out infinite;
+  transition: filter .3s;
+}
+
+#bottle:hover .bottle-art {
+  filter: brightness(1.18) drop-shadow(0 0 14px #ffd98a);
+}
+
+.glow {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pulse 2.6s ease-in-out infinite;
+}
+
+.go .bottle-art,
+.go .glow {
+  animation: none;
+}
+
+.cloud { animation: drift 70s linear infinite alternate; }
+.bird  { animation: fly 34s linear infinite; }
+.fl    { animation: twinkle 3s ease-in-out infinite alternate; }
+
+@keyframes bob     { 50% { transform: translateY(-14px) rotate(1.5deg); } }
+@keyframes pulse   { 50% { transform: scale(1.18); opacity: .7; } }
+@keyframes drift   { from { transform: translateX(-60px); } to { transform: translateX(90px); } }
+@keyframes fly     { from { transform: translateX(-120px); } to { transform: translateX(1750px); } }
+@keyframes twinkle { from { opacity: .25; } to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .bottle-art, .glow, .cloud, .bird, .fl { animation: none; }
+}
+
+/* ---------- PARTIE 2 : CLASSEMENT (BLEU NUIT) ---------- */
 .content {
   position: fixed;
   inset: 0;
   z-index: 1;
   min-height: 100vh;
-  /* Fond bleu nuit profond et élégant */
   background: linear-gradient(135deg, #0b1120 0%, #172554 100%);
   display: flex;
   flex-direction: column;
@@ -22,7 +121,6 @@
   align-items: center;
 }
 
-/* Titre principal inchangé (Doré) */
 .ranking-title {
   margin: 0 0 50px 0;
   font: 700 clamp(36px, 6vw, 65px)/1.05 'Cinzel', Georgia, serif;
@@ -43,7 +141,6 @@
   width: 100%;
 }
 
-/* Design de la carte : Verre fumé sombre */
 .touk-card {
   display: flex;
   align-items: center;
@@ -62,7 +159,6 @@
   background: rgba(30, 41, 59, 0.8);
 }
 
-/* Numérotation en doré pour contraster avec le fond sombre */
 .touk-rank {
   font-size: 48px;
   font-weight: 900;
@@ -99,7 +195,6 @@
   flex-grow: 1;
 }
 
-/* Textes clairs sur fond sombre */
 .touk-name {
   margin: 0 0 10px 0;
   font-size: 26px;
@@ -117,7 +212,6 @@
   line-height: 1.5;
 }
 
-/* Bloc des notes revu pour le thème sombre */
 .touk-scores {
   display: flex;
   gap: 15px;
@@ -166,7 +260,6 @@
   color: #ffc36e;
 }
 
-/* Responsive */
 @media (max-width: 800px) {
   .touk-card {
     flex-direction: column;
