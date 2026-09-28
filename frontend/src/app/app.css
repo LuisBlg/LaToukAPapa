@@ -1,37 +1,40 @@
-.container {
-  max-width: 700px;
-  margin: 50px auto;
+.login-container,
+.welcome-container {
+  width: 350px;
+  margin: 100px auto;
   font-family: Arial, sans-serif;
+  text-align: center;
 }
 
 h1 {
   margin-bottom: 30px;
 }
 
-.form {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 30px;
-}
-
 input {
-  flex: 1;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
   padding: 12px;
+  margin-bottom: 15px;
   font-size: 16px;
 }
 
 button {
-  padding: 12px 20px;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
   cursor: pointer;
 }
 
-.message {
-  padding: 15px;
-  margin-bottom: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+button:disabled {
+  cursor: not-allowed;
 }
 
-.message strong {
-  margin-right: 10px;
+.error {
+  margin-top: 20px;
+  color: red;
+}
+
+.welcome-container button {
+  margin-top: 20px;
 }

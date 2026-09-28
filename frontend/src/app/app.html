@@ -1,33 +1,48 @@
-<div class="container">
+@if (!connected) {
 
-  <h1>Mes messages</h1>
+  <div class="login-container">
 
-  <div class="form">
+    <h1>Connexion</h1>
+
     <input
       type="text"
-      [(ngModel)]="newMessage"
-      placeholder="Nom de touk"
-      (keyup.enter)="addMessage()"
+      [(ngModel)]="blaze"
+      placeholder="blaze"
+      (keyup.enter)="login()"
     >
 
-    <button (click)="addMessage()">
-      Ajouter
+    <input
+      type="password"
+      [(ngModel)]="mdp"
+      placeholder="mdp"
+      (keyup.enter)="login()"
+    >
+
+    <button
+      (click)="login()"
+      [disabled]="loading"
+    >
+      {{ loading ? 'Connexion...' : 'Connexion' }}
     </button>
-  </div>
 
-  <div class="messages">
-
-    @if (messages.length === 0) {
-      <p>Aucun message pour le moment.</p>
-    }
-
-    @for (message of messages; track message.id) {
-      <div class="message">
-        <strong>#{{ message.id }}</strong>
-        {{ message.content }}
-      </div>
+    @if (errorMessage) {
+      <p class="error">
+        {{ errorMessage }}
+      </p>
     }
 
   </div>
 
-</div>
+} @else {
+
+  <div class="welcome-container">
+
+    <h1>bonjour {{ connectedBlaze }}</h1>
+
+    <button (click)="logout()">
+      Déconnexion
+    </button>
+
+  </div>
+
+}

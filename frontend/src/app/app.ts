@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MessageService, Message } from './services/message.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -8,41 +8,59 @@ import { MessageService, Message } from './services/message.service';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App implements OnInit {
+export class App {
 
-  messages: Message[] = [];
-  newMessage = '';
+  blaze = '';
+  mdp = '';
 
-  constructor(private messageService: MessageService) {}
+  connected = false;
+  connectedBlaze = '';
 
-  ngOnInit(): void {
-    this.loadMessages();
-  }
+  errorMessage = '';
+  loading = false;
 
-  loadMessages(): void {
-    this.messageService.getMessages().subscribe({
-      next: (messages) => {
-        this.messages = messages;
-      },
-      error: (error) => {
-        console.error('Erreur lors du chargement des messages', error);
-      }
-    });
-  }
+  constructor(private http: HttpClient) {}
 
-  addMessage(): void {
-    if (!this.newMessage.trim()) {
+  login(): void {
+
+    this.errorMessage = '';
+
+    if (!this.blaze || !this.mdp) {
+      this.errorMessage = 'Remplis les deux champs mon cochon';
       return;
     }
 
-    this.messageService.createMessage(this.newMessage).subscribe({
-      next: (message) => {
-        this.messages.push(message);
-        this.newMessage = '';
+    this.loading = true;
+
+    this.http.post<string>(
+      '/api/login',
+      {
+        blaze: this.blaze,
+        mdp: this.mdp
       },
-      error: (error) => {
-        console.error('Erreur lors de la création du message', error);
+      {
+        responseType: 'text' as 'json'
+      }
+    ).subscribe({
+      next: (blaze) => {
+        this.connected = true;
+        this.connectedBlaze = blaze;
+        this.loading = false;
+      },
+      error: () => {
+        this.errorMessage =
+          'ton blaze ou ton mot de passe est incorrect mon cochon';
+
+        this.loading = false;
       }
     });
+  }
+
+  logout(): void {
+    this.connected = false;
+    this.connectedBlaze = '';
+    this.blaze = '';
+    this.mdp = '';
+    this.errorMessage = '';
   }
 }
