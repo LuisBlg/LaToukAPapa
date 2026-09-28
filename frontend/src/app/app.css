@@ -1,40 +1,41 @@
-.login-container,
-.welcome-container {
-  width: 350px;
-  margin: 100px auto;
-  font-family: Arial, sans-serif;
-  text-align: center;
+.entry-screen {
+  position: fixed;
+  inset: 0;
+
+  background: #808080;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-h1 {
-  margin-bottom: 30px;
-}
+.entry-button {
+  padding: 30px 80px;
 
-input {
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 12px;
-  margin-bottom: 15px;
-  font-size: 16px;
-}
+  font-size: 32px;
+  font-weight: bold;
 
-button {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+
   cursor: pointer;
 }
 
-button:disabled {
-  cursor: not-allowed;
+.entry-button:hover {
+  transform: scale(1.05);
 }
 
-.error {
-  margin-top: 20px;
-  color: red;
+.content {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding-top: 80px;
 }
 
-.welcome-container button {
-  margin-top: 20px;
+.content h1 {
+  font-size: 48px;
+  text-align: center;
 }

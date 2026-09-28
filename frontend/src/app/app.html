@@ -1,48 +1,19 @@
-@if (!connected) {
+@if (!entered) {
 
-  <div class="login-container">
+  <div class="entry-screen">
 
-    <h1>Connexion</h1>
-
-    <input
-      type="text"
-      [(ngModel)]="blaze"
-      placeholder="blaze"
-      (keyup.enter)="login()"
-    >
-
-    <input
-      type="password"
-      [(ngModel)]="mdp"
-      placeholder="mdp"
-      (keyup.enter)="login()"
-    >
-
-    <button
-      (click)="login()"
-      [disabled]="loading"
-    >
-      {{ loading ? 'Connexion...' : 'Connexion' }}
+    <button class="entry-button" (click)="enter()">
+      ENTRÉE
     </button>
-
-    @if (errorMessage) {
-      <p class="error">
-        {{ errorMessage }}
-      </p>
-    }
 
   </div>
 
 } @else {
 
-  <div class="welcome-container">
+  <main class="content">
 
-    <h1>bonjour {{ connectedBlaze }}</h1>
+    <h1>CLASSEMENT DES TOUKS</h1>
 
-    <button (click)="logout()">
-      Déconnexion
-    </button>
-
-  </div>
+  </main>
 
 }
