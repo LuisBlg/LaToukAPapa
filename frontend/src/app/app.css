@@ -1,114 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@500;700&display=swap');
-
-/* ---------- PARTIE 1 : écran d'entrée ---------- */
-.entry-screen {
-  position: fixed;
-  inset: 0;
-  z-index: 10;
-  overflow: hidden;
-  background: transparent;
-}
-
-.scene {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-/* Titre */
-.title {
-  position: absolute;
-  top: 6vh;
-  left: 0;
-  right: 0;
-  z-index: 2;
-  margin: 0;
-  text-align: center;
-  pointer-events: none;
-  transition: opacity .7s ease, transform .7s ease;
-}
-
-.title span {
-  display: block;
-  font: 500 clamp(14px, 2.4vw, 30px) 'Cinzel', Georgia, serif;
-  letter-spacing: .38em;
-  text-transform: uppercase;
-  color: #fff3dc;
-  text-shadow: 0 2px 14px rgba(120, 40, 70, .6);
-}
-
-.title strong {
-  display: block;
-  font: 900 clamp(52px, 10vw, 150px)/1.05 'Cinzel Decorative', Georgia, serif;
-  letter-spacing: .03em;
-  background: linear-gradient(#fff8e2 20%, #ffc36e 90%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 5px 0 #7a2f4f) drop-shadow(0 0 30px rgba(255, 190, 120, .6));
-}
-
-.go .title {
-  opacity: 0;
-  transform: translateY(-30px) scale(.96);
-}
-
-/* Bouteille */
-#bottle {
-  cursor: pointer;
-  outline: none;
-}
-
-#bottle:focus-visible .bottle-art {
-  filter: drop-shadow(0 0 10px #fff3b8);
-}
-
-.bottle-art {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: bob 4s ease-in-out infinite;
-  transition: filter .3s;
-}
-
-#bottle:hover .bottle-art {
-  filter: brightness(1.18) drop-shadow(0 0 14px #ffd98a);
-}
-
-.glow {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: pulse 2.6s ease-in-out infinite;
-}
-
-.go .bottle-art,
-.go .glow {
-  animation: none;
-}
-
-/* Ambiance */
-.cloud { animation: drift 70s linear infinite alternate; }
-.bird  { animation: fly 34s linear infinite; }
-.fl    { animation: twinkle 3s ease-in-out infinite alternate; }
-
-@keyframes bob     { 50% { transform: translateY(-14px) rotate(1.5deg); } }
-@keyframes pulse   { 50% { transform: scale(1.18); opacity: .7; } }
-@keyframes drift   { from { transform: translateX(-60px); } to { transform: translateX(90px); } }
-@keyframes fly     { from { transform: translateX(-120px); } to { transform: translateX(1750px); } }
-@keyframes twinkle { from { opacity: .25; } to { opacity: 1; } }
-
-@media (prefers-reduced-motion: reduce) {
-  .bottle-art, .glow, .cloud, .bird, .fl { animation: none; }
-}
-
-/* ---------- PARTIE 2 : NOUVEAU DESIGN DU CLASSEMENT ---------- */
+/* ---------- PARTIE 2 : NOUVEAU DESIGN DU CLASSEMENT (BLEU NUIT) ---------- */
 .content {
   position: fixed;
   inset: 0;
   z-index: 1;
   min-height: 100vh;
-  /* Nouveau fond aéré, couleurs chaudes reprenant le ciel de l'écran d'accueil */
-  background: linear-gradient(135deg, #f9ab75 0%, #ea7566 50%, #b04f6e 100%);
+  /* Fond bleu nuit profond et élégant */
+  background: linear-gradient(135deg, #0b1120 0%, #172554 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -125,7 +22,7 @@
   align-items: center;
 }
 
-/* Titre principal : police Cinzel classique mais avec le style doré */
+/* Titre principal inchangé (Doré) */
 .ranking-title {
   margin: 0 0 50px 0;
   font: 700 clamp(36px, 6vw, 65px)/1.05 'Cinzel', Georgia, serif;
@@ -136,10 +33,9 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 4px 10px rgba(120, 40, 70, 0.4));
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6));
 }
 
-/* Conteneur de la liste des bannières */
 .touk-list {
   display: flex;
   flex-direction: column;
@@ -147,48 +43,49 @@
   width: 100%;
 }
 
-/* Design de la bannière : fond clair translucide pour contraster avec le fond coloré */
+/* Design de la carte : Verre fumé sombre */
 .touk-card {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.7); /* Beaucoup plus clair ! */
-  border: 2px solid rgba(255, 255, 255, 0.9);
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   padding: 20px 30px;
-  box-shadow: 0 15px 35px rgba(74, 26, 58, 0.15);
-  backdrop-filter: blur(15px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .touk-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(74, 26, 58, 0.25);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  background: rgba(30, 41, 59, 0.8);
 }
 
-/* Numérotation de la place */
+/* Numérotation en doré pour contraster avec le fond sombre */
 .touk-rank {
   font-size: 48px;
   font-weight: 900;
-  color: #b04f6e; /* Un rouge/violet foncé pour bien ressortir */
+  color: #ffc36e;
   margin-right: 25px;
   min-width: 60px;
   text-align: center;
+  text-shadow: 0 2px 10px rgba(255, 195, 110, 0.2);
 }
 
-/* Photo du créateur de la touk - structurée pour ne jamais s'écraser */
 .touk-profile {
   flex-shrink: 0;
   width: 90px;
   height: 90px;
   margin-right: 25px;
   border-radius: 50%;
-  border: 3px solid #fff;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-  overflow: hidden; /* Important pour garder le cercle si l'image casse */
+  border: 2px solid #ffc36e;
+  box-shadow: 0 0 15px rgba(255, 195, 110, 0.2);
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(176, 79, 110, 0.1);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .touk-profile img {
@@ -198,15 +95,15 @@
   display: block;
 }
 
-/* Infos et commentaire (textes foncés pour la lisibilité) */
 .touk-info {
   flex-grow: 1;
 }
 
+/* Textes clairs sur fond sombre */
 .touk-name {
   margin: 0 0 10px 0;
   font-size: 26px;
-  color: #2c0b26; /* Violet très foncé */
+  color: #f8fafc;
   font-weight: 700;
   letter-spacing: 0.05em;
 }
@@ -215,12 +112,12 @@
   margin: 0;
   font-size: 15px;
   font-family: sans-serif;
-  color: #4a1a3a;
+  color: #cbd5e1;
   font-style: italic;
   line-height: 1.5;
 }
 
-/* Bloc des notes */
+/* Bloc des notes revu pour le thème sombre */
 .touk-scores {
   display: flex;
   gap: 15px;
@@ -232,17 +129,17 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(15, 23, 42, 0.5);
   padding: 12px 15px;
   border-radius: 12px;
   min-width: 80px;
-  border: 1px solid rgba(176, 79, 110, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .score-global {
-  background: #fff;
-  border: 2px solid #ea7566;
-  box-shadow: 0 4px 10px rgba(234, 117, 102, 0.2);
+  background: rgba(30, 58, 138, 0.3);
+  border: 1px solid #ffc36e;
+  box-shadow: 0 4px 15px rgba(255, 195, 110, 0.1);
 }
 
 .score-label {
@@ -250,26 +147,26 @@
   font-family: sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: #7b2f52;
+  color: #94a3b8;
   margin-bottom: 6px;
   font-weight: bold;
 }
 
 .score-global .score-label {
-  color: #ea7566;
+  color: #ffc36e;
 }
 
 .score-value {
   font-size: 22px;
   font-weight: 700;
-  color: #2c0b26;
+  color: #f8fafc;
 }
 
 .score-global .score-value {
-  color: #b04f6e;
+  color: #ffc36e;
 }
 
-/* Version responsive pour les téléphones */
+/* Responsive */
 @media (max-width: 800px) {
   .touk-card {
     flex-direction: column;
