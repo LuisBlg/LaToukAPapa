@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@500;700&display=swap');
 
 /* ---------- PARTIE 1 : écran d'entrée ---------- */
 .entry-screen {
@@ -107,14 +107,13 @@
   inset: 0;
   z-index: 1;
   min-height: 100vh;
-  /* Dégradé sombre reprenant les couleurs violettes/chaudes de l'avant-plan du paysage */
-  background: linear-gradient(135deg, #2c0b26 0%, #1c0518 100%);
+  /* Nouveau fond aéré, couleurs chaudes reprenant le ciel de l'écran d'accueil */
+  background: linear-gradient(135deg, #f9ab75 0%, #ea7566 50%, #b04f6e 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 60px 20px 40px 20px;
-  overflow-y: auto; /* Permet le défilement (menu déroulant) */
-  color: #fff3dc;
+  overflow-y: auto;
   font-family: 'Cinzel', Georgia, serif;
 }
 
@@ -126,10 +125,10 @@
   align-items: center;
 }
 
-/* Titre reprenant le même style doré que l'écran d'accueil */
+/* Titre principal : police Cinzel classique mais avec le style doré */
 .ranking-title {
   margin: 0 0 50px 0;
-  font: 900 clamp(36px, 6vw, 65px)/1.05 'Cinzel Decorative', Georgia, serif;
+  font: 700 clamp(36px, 6vw, 65px)/1.05 'Cinzel', Georgia, serif;
   letter-spacing: .05em;
   text-transform: uppercase;
   text-align: center;
@@ -137,7 +136,7 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 4px 15px rgba(255, 190, 120, .3));
+  filter: drop-shadow(0 4px 10px rgba(120, 40, 70, 0.4));
 }
 
 /* Conteneur de la liste des bannières */
@@ -148,52 +147,58 @@
   width: 100%;
 }
 
-/* Design d'une bannière de Touk (effet verre/glassmorphism) */
+/* Design de la bannière : fond clair translucide pour contraster avec le fond coloré */
 .touk-card {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 217, 138, 0.2);
+  background: rgba(255, 255, 255, 0.7); /* Beaucoup plus clair ! */
+  border: 2px solid rgba(255, 255, 255, 0.9);
   border-radius: 20px;
   padding: 20px 30px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(12px);
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 15px 35px rgba(74, 26, 58, 0.15);
+  backdrop-filter: blur(15px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .touk-card:hover {
   transform: translateY(-5px);
-  border-color: rgba(255, 217, 138, 0.6);
-  box-shadow: 0 15px 50px rgba(255, 195, 110, 0.15);
+  box-shadow: 0 20px 40px rgba(74, 26, 58, 0.25);
 }
 
 /* Numérotation de la place */
 .touk-rank {
   font-size: 48px;
   font-weight: 900;
-  color: #e9a574;
+  color: #b04f6e; /* Un rouge/violet foncé pour bien ressortir */
   margin-right: 25px;
   min-width: 60px;
   text-align: center;
-  text-shadow: 0 2px 10px rgba(233, 165, 116, 0.4);
 }
 
-/* Photo du créateur de la touk */
+/* Photo du créateur de la touk - structurée pour ne jamais s'écraser */
 .touk-profile {
   flex-shrink: 0;
+  width: 90px;
+  height: 90px;
   margin-right: 25px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  overflow: hidden; /* Important pour garder le cercle si l'image casse */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(176, 79, 110, 0.1);
 }
 
 .touk-profile img {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border: 2px solid #ffc36e;
-  box-shadow: 0 0 20px rgba(255, 195, 110, 0.3);
+  display: block;
 }
 
-/* Infos et commentaire */
+/* Infos et commentaire (textes foncés pour la lisibilité) */
 .touk-info {
   flex-grow: 1;
 }
@@ -201,7 +206,8 @@
 .touk-name {
   margin: 0 0 10px 0;
   font-size: 26px;
-  color: #fff8e2;
+  color: #2c0b26; /* Violet très foncé */
+  font-weight: 700;
   letter-spacing: 0.05em;
 }
 
@@ -209,10 +215,9 @@
   margin: 0;
   font-size: 15px;
   font-family: sans-serif;
-  color: #f7d9a2;
+  color: #4a1a3a;
   font-style: italic;
   line-height: 1.5;
-  opacity: 0.9;
 }
 
 /* Bloc des notes */
@@ -227,15 +232,17 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.5);
   padding: 12px 15px;
   border-radius: 12px;
   min-width: 80px;
+  border: 1px solid rgba(176, 79, 110, 0.1);
 }
 
 .score-global {
-  background: rgba(233, 165, 116, 0.15);
-  border: 1px solid rgba(233, 165, 116, 0.5);
+  background: #fff;
+  border: 2px solid #ea7566;
+  box-shadow: 0 4px 10px rgba(234, 117, 102, 0.2);
 }
 
 .score-label {
@@ -243,25 +250,26 @@
   font-family: sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: #a9c8ea;
+  color: #7b2f52;
   margin-bottom: 6px;
+  font-weight: bold;
 }
 
 .score-global .score-label {
-  color: #ffc36e;
+  color: #ea7566;
 }
 
 .score-value {
   font-size: 22px;
   font-weight: 700;
-  color: #fff;
+  color: #2c0b26;
 }
 
 .score-global .score-value {
-  color: #ffc36e;
+  color: #b04f6e;
 }
 
-/* Version responsive pour les téléphones (Mobile) */
+/* Version responsive pour les téléphones */
 @media (max-width: 800px) {
   .touk-card {
     flex-direction: column;
