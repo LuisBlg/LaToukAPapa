@@ -1,8 +1,45 @@
 <!-- PARTIE 2 (derrière) : toujours présente, elle se découvre quand la bouteille passe -->
 <main class="content">
+  <div class="ranking-container">
+    <h1 class="ranking-title">Classement des Touks</h1>
 
-  <h1>CLASSEMENT DES TOUKS</h1>
+    <div class="touk-list">
+      <!-- Boucle Angular pour générer automatiquement une bannière par Touk -->
+      @for (touk of touks; track touk.rank) {
+        <div class="touk-card">
+          <!-- Numéro du classement -->
+          <div class="touk-rank">#{{ touk.rank }}</div>
 
+          <!-- Photo de la personne -->
+          <div class="touk-profile">
+            <img [src]="touk.image" alt="Créateur de la touk">
+          </div>
+
+          <!-- Nom et commentaire -->
+          <div class="touk-info">
+            <h3 class="touk-name">{{ touk.name }}</h3>
+            <p class="touk-comment">"{{ touk.comment }}"</p>
+          </div>
+
+          <!-- Les Notes -->
+          <div class="touk-scores">
+            <div class="score-item">
+              <span class="score-label">Goût</span>
+              <span class="score-value">{{ touk.tasteScore }}/10</span>
+            </div>
+            <div class="score-item">
+              <span class="score-label">Concept</span>
+              <span class="score-value">{{ touk.conceptScore }}/10</span>
+            </div>
+            <div class="score-global">
+              <span class="score-label">Moyenne</span>
+              <span class="score-value">{{ getGlobalScore(touk.tasteScore, touk.conceptScore) }}/10</span>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
 </main>
 
 <!-- PARTIE 1 : écran d'entrée -->
