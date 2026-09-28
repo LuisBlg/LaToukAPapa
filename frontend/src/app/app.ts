@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { playEntryAnimation } from './entry-animation.js';
 
 @Component({
   selector: 'app-root',
@@ -6,10 +7,20 @@ import { Component } from '@angular/core';
   styleUrl: './app.css'
 })
 export class App {
-
   entered = false;
 
-  enter(): void {
-    this.entered = true;
+  private cdr = inject(ChangeDetectorRef);
+
+  enter(ev: Event): void {
+    const root = (ev.target as Element).closest('.entry-screen');
+
+    if (!root) {
+      return;
+    }
+
+    playEntryAnimation(root, () => {
+      this.entered = true;
+      this.cdr.detectChanges();
+    });
   }
 }

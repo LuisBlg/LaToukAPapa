@@ -1,19 +1,155 @@
+<!-- PARTIE 2 (derrière) : toujours présente, elle se découvre quand la bouteille passe -->
+<main class="content">
+
+  <h1>CLASSEMENT DES TOUKS</h1>
+
+</main>
+
+<!-- PARTIE 1 : écran d'entrée -->
 @if (!entered) {
 
   <div class="entry-screen">
 
-    <button class="entry-button" (click)="enter()">
-      ENTRÉE
-    </button>
+    <!-- Pour changer le texte : modifie simplement ces deux lignes -->
+    <h2 class="title">
+      <span>Welcome to the</span>
+      <strong>Tuka Papa</strong>
+    </h2>
+
+    <svg class="scene" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ffe9bd"/><stop offset=".4" stop-color="#f9ab75"/>
+          <stop offset=".75" stop-color="#ea7566"/><stop offset="1" stop-color="#b04f6e"/>
+        </linearGradient>
+        <radialGradient id="glow">
+          <stop offset="0" stop-color="#fff3b8"/><stop offset="1" stop-color="#fff3b8" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="glass" x1="0" x2="1">
+          <stop offset="0" stop-color="#1c0518"/><stop offset=".35" stop-color="#5b1b3c"/><stop offset="1" stop-color="#1c0518"/>
+        </linearGradient>
+        <linearGradient id="sand" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#f7d9a2"/><stop offset="1" stop-color="#e9a574"/>
+        </linearGradient>
+        <path id="pine" d="M0-64 12-40H6L16-20H6L20-2H5V8H-5V-2H-20L-6-20H-16L-6-40H-12Z"/>
+        <path id="bd" d="M0 0C8-10 20-10 26-2 32-10 44-10 52 0 40-4 32-2 26 6 20-2 12-4 0 0Z"/>
+        <g id="cl">
+          <path fill="#fff" d="M0 26C-14 4 22-14 42-6 58-26 98-18 102 4 128 0 146 20 122 28Z"/>
+          <path fill="#a9c8ea" d="M14 30H120L100 40H36Z"/>
+        </g>
+        <g id="lan">
+          <circle r="34" fill="url(#glow)"/>
+          <rect x="-5" y="-16" width="10" height="20" rx="3" fill="#ffd77f"/>
+          <path d="M0 4V26" stroke="#4a1a3a" stroke-width="4"/>
+        </g>
+        <filter id="soft"><feGaussianBlur stdDeviation="14"/></filter>
+        <!-- Le masque : le trait noir tracé par la bouteille "efface" la scène -->
+        <mask id="m" maskUnits="userSpaceOnUse" x="-200" y="-200" width="2000" height="1300">
+          <rect x="-200" y="-200" width="2000" height="1300" fill="#fff"/>
+          <path id="wipe" fill="none" stroke="#000" stroke-width="480" stroke-linecap="round" stroke-linejoin="round" filter="url(#soft)"/>
+        </mask>
+      </defs>
+
+      <g mask="url(#m)">
+        <!-- ciel + soleil -->
+        <rect width="1600" height="900" fill="url(#sky)"/>
+        <circle cx="800" cy="430" r="330" fill="url(#glow)" opacity=".8"/>
+        <circle cx="800" cy="440" r="105" fill="#fff0b0"/>
+        <g class="cloud"><use href="#cl" transform="translate(120 130) scale(1.7)"/></g>
+        <g class="cloud" style="animation-delay:-20s"><use href="#cl" transform="translate(1180 210) scale(1.5)"/></g>
+        <g class="cloud" style="animation-delay:-35s"><use href="#cl" transform="translate(560 330) scale(.9)"/></g>
+
+        <!-- montagnes -->
+        <path fill="#f0917b" opacity=".75" d="M0 560 120 440 230 500 360 390 480 490 620 430 720 520 880 480 1000 530 1090 440 1200 500 1340 400 1460 490 1600 430V640H0Z"/>
+        <path fill="#ea7d6c" d="M-40 660 130 480 250 340 330 250 400 330 480 410 580 500 700 600V660Z"/>
+        <path fill="#c85a5e" opacity=".7" d="M330 250 250 340 130 480-40 660H180L300 500 340 380Z"/>
+        <path fill="#f9b892" d="M330 250 400 330 480 410 400 420 350 350 300 340 250 340Z"/>
+        <path fill="#ffe6c6" d="M330 250 372 298 345 306 322 288 296 306 276 312Z"/>
+        <path fill="#e8786a" d="M900 640 1010 520 1130 400 1250 290 1330 380 1420 450 1520 530 1660 640V660H900Z"/>
+        <path fill="#c25667" opacity=".7" d="M1250 290 1190 360 1130 400 1010 520 900 640H1100L1220 480 1260 380Z"/>
+        <path fill="#f7ae8c" d="M1250 290 1330 380 1420 450 1340 455 1290 380 1240 370 1190 360Z"/>
+        <path fill="#ffe6c6" d="M1250 290 1286 330 1262 336 1244 322 1220 338 1206 342Z"/>
+        <path fill="#c44f5f" d="M0 610C220 560 380 610 560 590S820 560 1040 590 1400 560 1600 600V720H0Z"/>
+
+        <!-- forêt lointaine -->
+        <g fill="#a8465e">
+          <use href="#pine" transform="translate(30 612) scale(.5)"/><use href="#pine" transform="translate(130 618) scale(.55)"/>
+          <use href="#pine" transform="translate(240 610) scale(.5)"/><use href="#pine" transform="translate(350 620) scale(.6)"/>
+          <use href="#pine" transform="translate(460 612) scale(.5)"/><use href="#pine" transform="translate(570 616) scale(.5)"/>
+          <use href="#pine" transform="translate(1030 616) scale(.5)"/><use href="#pine" transform="translate(1140 610) scale(.55)"/>
+          <use href="#pine" transform="translate(1250 620) scale(.5)"/><use href="#pine" transform="translate(1360 612) scale(.6)"/>
+          <use href="#pine" transform="translate(1470 618) scale(.5)"/><use href="#pine" transform="translate(1570 610) scale(.55)"/>
+        </g>
+        <g fill="#7b2f52">
+          <use href="#pine" transform="translate(50 720) scale(.95)"/><use href="#pine" transform="translate(150 750) scale(.85)"/>
+          <use href="#pine" transform="translate(250 700) scale(.9)"/><use href="#pine" transform="translate(360 760) scale(.85)"/>
+          <use href="#pine" transform="translate(1240 700) scale(.9)"/><use href="#pine" transform="translate(1350 750) scale(.85)"/>
+          <use href="#pine" transform="translate(1450 720) scale(.95)"/><use href="#pine" transform="translate(1550 760) scale(.85)"/>
+        </g>
+
+        <!-- LE TERRAIN DE VOLLEY (vu d'en haut), posé sur une île flottante -->
+        <path fill="#2c0b26" d="M360 850H1240L1100 892 960 872 820 912 700 874 560 900Z"/>
+        <path fill="#4a1a3a" d="M314 822H1286L1240 850H360Z"/>
+        <path fill="#8a3d56" d="M526 622H1074L1286 822H314Z"/>
+        <path fill="url(#sand)" d="M540 628H1060L1270 812H330Z"/>
+        <g fill="none" stroke="#fff8e8" stroke-width="4">
+          <path d="M540 628H1060L1270 812H330Z"/><path d="M452 705H1148M481 680H1119M409 743H1191"/>
+        </g>
+        <path fill="#b9673f" opacity=".35" d="M452 716H1148L1160 728H440Z"/>
+        <path d="M436 705H1164" stroke="#fff8e8" stroke-width="9" stroke-dasharray="3 4"/>
+        <path d="M436 697H1164" stroke="#fff" stroke-width="3"/>
+        <path d="M436 705V670M1164 705V670" stroke="#5a2140" stroke-width="6" stroke-linecap="round"/>
+        <ellipse cx="990" cy="782" rx="15" ry="4" fill="#b9673f" opacity=".45"/>
+        <g transform="translate(985 768)">
+          <circle r="11" fill="#fff"/><path d="M-11 0Q0-6 11 0M0-11Q6 0 0 11" fill="none" stroke="#e5a24a" stroke-width="2"/>
+        </g>
+        <use class="fl" href="#lan" x="526" y="622"/><use class="fl" href="#lan" x="1074" y="622" style="animation-delay:-1s"/>
+        <use class="fl" href="#lan" x="314" y="822" style="animation-delay:-2s"/><use class="fl" href="#lan" x="1286" y="822" style="animation-delay:-.5s"/>
+        <ellipse cx="800" cy="860" rx="700" ry="40" fill="#ffe9d2" opacity=".18"/>
+        <ellipse cx="800" cy="700" rx="760" ry="26" fill="#ffe9d2" opacity=".1"/>
+
+        <!-- avant-plan sombre -->
+        <path fill="#2c0b26" d="M0 820C200 790 300 850 420 900H0Z"/>
+        <path fill="#2c0b26" d="M1600 820C1400 790 1300 850 1180 900H1600Z"/>
+        <g fill="#2c0b26">
+          <use href="#pine" transform="translate(60 900) scale(2.3)"/><use href="#pine" transform="translate(190 900) scale(1.7)"/>
+          <use href="#pine" transform="translate(300 900) scale(1.3)"/><use href="#pine" transform="translate(1540 900) scale(2.3)"/>
+          <use href="#pine" transform="translate(1410 900) scale(1.7)"/><use href="#pine" transform="translate(1300 900) scale(1.3)"/>
+        </g>
+
+        <!-- lucioles -->
+        <g fill="#ffe08a">
+          <circle class="fl" cx="420" cy="640" r="3"/><circle class="fl" cx="640" cy="590" r="3" style="animation-delay:-1s"/>
+          <circle class="fl" cx="980" cy="600" r="3" style="animation-delay:-2s"/><circle class="fl" cx="1180" cy="660" r="3" style="animation-delay:-.7s"/>
+          <circle class="fl" cx="300" cy="760" r="3" style="animation-delay:-1.6s"/><circle class="fl" cx="1310" cy="740" r="3" style="animation-delay:-2.4s"/>
+          <circle class="fl" cx="760" cy="850" r="3" style="animation-delay:-.3s"/><circle class="fl" cx="880" cy="640" r="3" style="animation-delay:-1.3s"/>
+        </g>
+
+        <!-- oiseaux -->
+        <g fill="#3a0d2c">
+          <g class="bird"><use href="#bd" transform="translate(0 210) scale(1.3)"/></g>
+          <g class="bird" style="animation-delay:-9s"><use href="#bd" transform="translate(0 330) scale(.8)"/></g>
+          <g class="bird" style="animation-delay:-16s"><use href="#bd" transform="translate(0 270) scale(1)"/></g>
+        </g>
+      </g>
+
+      <!-- LA BOUTEILLE (au premier plan, jamais masquée) -->
+      <g id="bottle" role="button" tabindex="0" aria-label="Entrer" transform="translate(800 520)"
+         (click)="enter($event)" (keydown.enter)="enter($event)">
+        <g class="bottle-art">
+          <ellipse class="glow" rx="150" ry="230" fill="url(#glow)"/>
+          <path fill="url(#glass)" d="M-52 130V-30C-52-75-26-80-24-130V-176H24V-130C26-80 52-75 52-30V130Q52 146 36 146H-36Q-52 146-52 130Z"/>
+          <path d="M-38-10V120M-14-150V-104" stroke="#ff9d78" stroke-opacity=".45" stroke-width="7" stroke-linecap="round"/>
+          <rect x="-52" y="14" width="104" height="82" fill="#f5dba6"/>
+          <path d="M-52 22H52M-52 88H52" stroke="#c98a3d" stroke-width="3"/>
+          <path fill="#b4517a" d="M0 32 16 55 0 78-16 55Z"/>
+          <path fill="#f5dba6" d="M0 42 6 55 0 68-6 55Z"/>
+          <rect x="-28" y="-196" width="56" height="26" rx="5" fill="#e9b74f"/>
+          <rect x="-27" y="-136" width="54" height="9" rx="3" fill="#e9b74f"/>
+        </g>
+      </g>
+    </svg>
 
   </div>
-
-} @else {
-
-  <main class="content">
-
-    <h1>CLASSEMENT DES TOUKS</h1>
-
-  </main>
 
 }
