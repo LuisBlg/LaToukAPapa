@@ -16,11 +16,11 @@ export class App {
   touks = [
     {
       rank: 1,
-      name: "La Touk des Plages", // Nom de la touk
+      name: "L'embuscade", // Nom de la touk
       image: "assets/linsay.jpg", // Mets ici le chemin vers l'image de la personne
-      tasteScore: 9.5,            // Note de goût
-      conceptScore: 8.0,          // Note de concept
-      comment: "Une touk rafraîchissante, parfaite après un match de volley sur la plage ! Le concept est top."
+      tasteScore: 6.5,            // Note de goût
+      conceptScore: 4,          // Note de concept
+      comment: "Première touk de la saison, pas la plus facile. Malgré un concept on ne peut plus simple, notre toukeur a su tirer parti du goût mordant du pinard pour faire un breuvage à la fois agressif, mais peu fort en degrés. Mention honorable au sirop de violette, qui a trouvé sa place dans un cocktail aussi bien déstructuré qu’équilibré"
     }
   ];
 
