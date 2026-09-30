@@ -78,13 +78,13 @@
             <p class="touk-comment">« {{ touk.comment }} »</p>
           </div>
 
-          <!-- Carré : note de l'équipe -->
-          <div class="team-score">
-            <span class="team-label">Note de l'équipe</span>
-            <span class="team-value">{{ touk.teamScore }}<small>/10</small></span>
+          <!-- Carré : moyenne générale -->
+          <div class="avg-score">
+            <span class="avg-label">Moyenne générale</span>
+            <span class="avg-value">{{ getGlobalScore(touk.tasteScore, touk.conceptScore) }}<small>/10</small></span>
           </div>
 
-          <!-- Les Notes -->
+          <!-- Les Notes : goût, concept, équipe -->
           <div class="touk-scores">
             <div class="score-item">
               <div class="score-head">
@@ -102,12 +102,12 @@
               <div class="score-bar"><span class="score-fill" [style.width.%]="touk.conceptScore * 10"></span></div>
             </div>
 
-            <div class="score-item score-item--global">
+            <div class="score-item score-item--team">
               <div class="score-head">
-                <span class="score-label">Moyenne</span>
-                <span class="score-value">{{ getGlobalScore(touk.tasteScore, touk.conceptScore) }}<small>/10</small></span>
+                <span class="score-label">Note de l'équipe</span>
+                <span class="score-value">{{ touk.teamScore }}<small>/10</small></span>
               </div>
-              <div class="score-bar"><span class="score-fill" [style.width.%]="getGlobalScore(touk.tasteScore, touk.conceptScore) * 10"></span></div>
+              <div class="score-bar"><span class="score-fill" [style.width.%]="touk.teamScore * 10"></span></div>
             </div>
           </div>
         </article>

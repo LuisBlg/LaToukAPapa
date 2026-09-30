@@ -21,7 +21,7 @@ export class App {
       image: "linsay.jpg", 
       tasteScore: 6.5,            
       conceptScore: 4.0,          
-      teamScore: 9,
+      teamScore: 6.02,
       comment: "Première touk de la saison, pas la plus facile. Malgré un concept on ne peut plus simple, notre toukeur a su tirer parti du goût mordant du pinard pour faire un breuvage à la fois agressif, mais peu fort en degrés. Mention honorable au sirop de violette, qui a trouvé sa place dans un cocktail aussi bien déstructuré qu'équilibré."
     }
   ];

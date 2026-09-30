@@ -352,8 +352,8 @@
   color: #6b3a4d;
 }
 
-/* --- Carré : note de l'équipe (le "soleil") --- */
-.team-score {
+/* --- Carré "soleil" : moyenne générale --- */
+.avg-score {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -375,24 +375,27 @@
   transition: transform .3s ease;
 }
 
-.touk-card:hover .team-score {
+.touk-card:hover .avg-score {
   transform: rotate(0deg) scale(1.05);
 }
 
-.team-label {
+.avg-label {
   font: 700 10px/1.35 'Cinzel', Georgia, serif;
   letter-spacing: .16em;
   text-transform: uppercase;
   text-align: center;
 }
 
-.team-value {
-  font: 900 52px/1 'Cinzel Decorative', Georgia, serif;
+.avg-value {
+  font: 900 40px/1 'Cinzel Decorative', Georgia, serif;
+  text-align: center;
+  white-space: nowrap;
 }
 
-.team-value small {
-  margin-left: 2px;
-  font: 700 14px 'Cinzel', Georgia, serif;
+.avg-value small {
+  display: block;
+  margin-top: 5px;
+  font: 700 13px/1 'Cinzel', Georgia, serif;
   opacity: .7;
 }
 
@@ -410,12 +413,14 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  min-width: 0;
 }
 
 .score-head {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
+  gap: 10px;
 }
 
 .score-label {
@@ -426,6 +431,7 @@
 }
 
 .score-value {
+  flex-shrink: 0;
   font: 700 22px 'Cinzel', Georgia, serif;
   color: #4a1a3a;
 }
@@ -450,16 +456,16 @@
   background: linear-gradient(90deg, #ea7566, #f9ab75 55%, #ffc36e);
 }
 
-.score-item--global .score-label {
+.score-item--team .score-label {
   color: #b04f6e;
 }
 
-.score-item--global .score-fill {
+.score-item--team .score-fill {
   background: linear-gradient(90deg, #b04f6e, #ea7566 55%, #ffc36e);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .touk-card, .team-score { transition: none; }
+  .touk-card, .avg-score { transition: none; }
 }
 
 @media (max-width: 800px) {
@@ -503,7 +509,7 @@
     text-align: left;
   }
 
-  .team-score {
+  .avg-score {
     width: 120px;
   }
 }
