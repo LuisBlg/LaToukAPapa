@@ -12,6 +12,7 @@ export class App {
   private cdr = inject(ChangeDetectorRef);
 
   // --- C'EST ICI QUE TU RAJOUTERAS TES TOUKS AU FUR ET À MESURE ---
+  // teamScore = la note de l'équipe (sur 10)
   touks = [
     {
       rank: 1,
@@ -20,12 +21,13 @@ export class App {
       image: "linsay.jpg", 
       tasteScore: 6.5,            
       conceptScore: 4.0,          
+      teamScore: 9,
       comment: "Première touk de la saison, pas la plus facile. Malgré un concept on ne peut plus simple, notre toukeur a su tirer parti du goût mordant du pinard pour faire un breuvage à la fois agressif, mais peu fort en degrés. Mention honorable au sirop de violette, qui a trouvé sa place dans un cocktail aussi bien déstructuré qu'équilibré."
     }
   ];
 
   getGlobalScore(taste: number, concept: number): number {
-    return (taste + concept) / 2;
+    return Math.round(((taste + concept) / 2) * 100) / 100;
   }
 
   enter(ev: Event): void {

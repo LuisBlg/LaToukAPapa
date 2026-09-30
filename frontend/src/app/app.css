@@ -98,90 +98,223 @@
   .bottle-art, .glow, .cloud, .bird, .fl { animation: none; }
 }
 
-/* ---------- PARTIE 2 : CLASSEMENT (BLEU NUIT) ---------- */
+/* ---------- PARTIE 2 : CLASSEMENT (COUCHER DE SOLEIL) ---------- */
 .content {
   position: fixed;
   inset: 0;
   z-index: 1;
   min-height: 100vh;
-  background: linear-gradient(135deg, #0b1120 0%, #172554 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 60px 20px 40px 20px;
+  overflow-x: hidden;
   overflow-y: auto;
+  background: #fff6e6;
+  color: #3a0d2c;
   font-family: 'Cinzel', Georgia, serif;
 }
 
-.ranking-container {
+.content *,
+.content *::before,
+.content *::after {
+  box-sizing: border-box;
+}
+
+/* --- Bandeau ciel + montagnes --- */
+.hero {
+  position: relative;
   width: 100%;
-  max-width: 900px;
+  height: clamp(340px, 42vw, 470px);
+  overflow: hidden;
+}
+
+.hero-scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hero-text {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: clamp(28px, 6vh, 56px) 20px 0;
+  text-align: center;
+}
+
+.hero-kicker {
+  font: 500 clamp(13px, 2vw, 24px) 'Cinzel', Georgia, serif;
+  letter-spacing: .38em;
+  text-transform: uppercase;
+  color: #fff3dc;
+  text-shadow: 0 2px 14px rgba(120, 40, 70, .6);
 }
 
 .ranking-title {
-  margin: 0 0 50px 0;
-  font: 700 clamp(36px, 6vw, 65px)/1.05 'Cinzel', Georgia, serif;
-  letter-spacing: .05em;
-  text-transform: uppercase;
-  text-align: center;
+  margin: 6px 0 0;
+  font: 900 clamp(36px, 6vw, 92px)/1.05 'Cinzel Decorative', Georgia, serif;
+  letter-spacing: .03em;
+  text-wrap: balance;
   background: linear-gradient(#fff8e2 20%, #ffc36e 90%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6));
+  filter: drop-shadow(0 5px 0 #7a2f4f) drop-shadow(0 0 30px rgba(255, 190, 120, .6));
+}
+
+.hero-count {
+  margin: 12px 0 0;
+  font: 500 clamp(12px, 1.6vw, 16px) 'Cinzel', Georgia, serif;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: #fff3dc;
+  text-shadow: 0 2px 12px rgba(120, 40, 70, .7);
+}
+
+/* --- Ornement losange (comme l'étiquette de la bouteille) --- */
+.ornament {
+  --line: #c98a3d;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: min(320px, 70%);
+  margin: 44px auto 0;
+}
+
+.ornament::before,
+.ornament::after {
+  content: '';
+  flex: 1;
+  height: 1.5px;
+}
+
+.ornament::before { background: linear-gradient(90deg, transparent, var(--line)); }
+.ornament::after  { background: linear-gradient(270deg, transparent, var(--line)); }
+
+.ornament i {
+  position: relative;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  background: #b4517a;
+  transform: rotate(45deg);
+}
+
+.ornament i::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  background: #f5dba6;
+}
+
+.hero .ornament {
+  --line: #7a2f4f;
+  margin: 16px auto 0;
+}
+
+.hero .ornament i::after {
+  background: #fff3dc;
+}
+
+/* --- Liste --- */
+.ranking-container {
+  position: relative;
+  z-index: 2;
+  width: min(1040px, 100%);
+  margin: -14px auto 0;
+  padding: 0 20px 70px;
 }
 
 .touk-list {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  width: 100%;
+  gap: 30px;
 }
 
+/* --- Carte = étiquette de bouteille --- */
 .touk-card {
-  display: flex;
+  position: relative;
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
   align-items: center;
-  background: rgba(30, 41, 59, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: 20px 30px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  column-gap: 28px;
+  row-gap: 22px;
+  padding: 30px 34px 26px;
+  background: linear-gradient(180deg, #fffaf0 0%, #fbeed4 100%);
+  border: 1px solid #ecd3a6;
+  border-radius: 24px;
+  box-shadow: 0 2px 0 #f0c98f, 0 24px 44px -22px rgba(122, 47, 79, .5);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.touk-card::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1.5px solid rgba(201, 138, 61, .45);
+  border-radius: 17px;
+  pointer-events: none;
 }
 
 .touk-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-  background: rgba(30, 41, 59, 0.8);
+  transform: translateY(-4px);
+  box-shadow: 0 2px 0 #f0c98f, 0 30px 50px -22px rgba(122, 47, 79, .55);
 }
 
+.touk-card.is-first {
+  border-color: #e9b74f;
+  box-shadow: 0 2px 0 #e9b74f, 0 0 0 4px rgba(255, 195, 110, .35), 0 28px 50px -22px rgba(122, 47, 79, .55);
+}
+
+/* --- Médaille de rang --- */
 .touk-rank {
-  font-size: 48px;
-  font-weight: 900;
-  color: #ffc36e;
-  margin-right: 25px;
-  min-width: 60px;
-  text-align: center;
-  text-shadow: 0 2px 10px rgba(255, 195, 110, 0.2);
-}
-
-.touk-profile {
-  flex-shrink: 0;
-  width: 90px;
-  height: 90px;
-  margin-right: 25px;
-  border-radius: 50%;
-  border: 2px solid #ffc36e;
-  box-shadow: 0 0 15px rgba(255, 195, 110, 0.2);
-  overflow: hidden;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.2);
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  color: #4a1a3a;
+  background: radial-gradient(circle at 30% 25%, #fff0b8, #e9b74f 72%);
+  border: 3px solid #fff8e2;
+  box-shadow: 0 0 0 2px #c98a3d, 0 8px 16px -6px rgba(122, 47, 79, .55);
+}
+
+.rank-no {
+  margin-bottom: 3px;
+  font: 700 9px/1 'Cinzel', Georgia, serif;
+  letter-spacing: .2em;
+  opacity: .75;
+}
+
+.rank-num {
+  font: 900 30px/1 'Cinzel Decorative', Georgia, serif;
+}
+
+.touk-rank[data-rank="2"] {
+  background: radial-gradient(circle at 30% 25%, #fff1ea, #d9aaa6 75%);
+}
+
+.touk-rank[data-rank="3"] {
+  background: radial-gradient(circle at 30% 25%, #ffe2bd, #c98a53 75%);
+}
+
+.touk-rank.rank-other {
+  color: #ffe9bd;
+  background: radial-gradient(circle at 30% 25%, #7b2f52, #4a1a3a 75%);
+}
+
+/* --- Photo --- */
+.touk-profile {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #fff8e2;
+  background: linear-gradient(#f9ab75, #ea7566);
+  box-shadow: 0 0 0 2px #e9b74f, 0 12px 22px -8px rgba(122, 47, 79, .55);
 }
 
 .touk-profile img {
@@ -191,91 +324,186 @@
   display: block;
 }
 
+/* --- Nom + commentaire --- */
 .touk-info {
-  flex-grow: 1;
+  min-width: 0;
 }
 
 .touk-name {
-  margin: 0 0 10px 0;
-  font-size: 26px;
-  color: #f8fafc;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  margin: 0;
+  font: 700 clamp(22px, 3vw, 30px)/1.15 'Cinzel', Georgia, serif;
+  letter-spacing: .04em;
+  color: #4a1a3a;
+}
+
+.touk-name::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 3px;
+  margin-top: 10px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #ea7566, #ffc36e);
 }
 
 .touk-comment {
-  margin: 0;
-  font-size: 15px;
-  font-family: sans-serif;
-  color: #cbd5e1;
-  font-style: italic;
-  line-height: 1.5;
+  margin: 14px 0 0;
+  font: italic 400 15.5px/1.65 Georgia, 'Times New Roman', serif;
+  color: #6b3a4d;
 }
 
-.touk-scores {
-  display: flex;
-  gap: 15px;
-  margin-left: 20px;
-}
-
-.score-item, .score-global {
+/* --- Carré : note de l'équipe (le "soleil") --- */
+.team-score {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgba(15, 23, 42, 0.5);
-  padding: 12px 15px;
-  border-radius: 12px;
-  min-width: 80px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  gap: 6px;
+  width: 132px;
+  aspect-ratio: 1;
+  padding: 10px;
+  border: 2px solid #fff8e2;
+  border-radius: 18px;
+  color: #3a0d2c;
+  background: linear-gradient(150deg, #ffe08a 0%, #ffb877 50%, #ea7566 100%);
+  box-shadow:
+    0 0 0 2px #7a2f4f,
+    0 14px 26px -8px rgba(122, 47, 79, .55),
+    inset 0 2px 0 rgba(255, 255, 255, .6),
+    inset 0 0 36px rgba(255, 243, 184, .55);
+  transform: rotate(3deg);
+  transition: transform .3s ease;
 }
 
-.score-global {
-  background: rgba(30, 58, 138, 0.3);
-  border: 1px solid #ffc36e;
-  box-shadow: 0 4px 15px rgba(255, 195, 110, 0.1);
+.touk-card:hover .team-score {
+  transform: rotate(0deg) scale(1.05);
+}
+
+.team-label {
+  font: 700 10px/1.35 'Cinzel', Georgia, serif;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.team-value {
+  font: 900 52px/1 'Cinzel Decorative', Georgia, serif;
+}
+
+.team-value small {
+  margin-left: 2px;
+  font: 700 14px 'Cinzel', Georgia, serif;
+  opacity: .7;
+}
+
+/* --- Bandeau des notes (séparé par des pointillés, comme un ticket) --- */
+.touk-scores {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding-top: 20px;
+  border-top: 2px dashed rgba(201, 138, 61, .5);
+}
+
+.score-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.score-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
 }
 
 .score-label {
-  font-size: 11px;
-  font-family: sans-serif;
+  font: 700 11px sans-serif;
+  letter-spacing: .18em;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: #94a3b8;
-  margin-bottom: 6px;
-  font-weight: bold;
-}
-
-.score-global .score-label {
-  color: #ffc36e;
+  color: #9a5a6c;
 }
 
 .score-value {
-  font-size: 22px;
-  font-weight: 700;
-  color: #f8fafc;
+  font: 700 22px 'Cinzel', Georgia, serif;
+  color: #4a1a3a;
 }
 
-.score-global .score-value {
-  color: #ffc36e;
+.score-value small {
+  margin-left: 2px;
+  font-size: 12px;
+  color: #9a5a6c;
+}
+
+.score-bar {
+  height: 8px;
+  border-radius: 99px;
+  background: rgba(122, 47, 79, .12);
+  overflow: hidden;
+}
+
+.score-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #ea7566, #f9ab75 55%, #ffc36e);
+}
+
+.score-item--global .score-label {
+  color: #b04f6e;
+}
+
+.score-item--global .score-fill {
+  background: linear-gradient(90deg, #b04f6e, #ea7566 55%, #ffc36e);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .touk-card, .team-score { transition: none; }
 }
 
 @media (max-width: 800px) {
+  .hero {
+    height: clamp(330px, 80vw, 430px);
+  }
+
+  .ranking-container {
+    padding: 0 14px 60px;
+  }
+
   .touk-card {
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    justify-items: center;
     text-align: center;
-    padding: 25px 15px;
+    row-gap: 18px;
+    padding: 30px 22px 24px;
   }
+
   .touk-rank {
-    margin: 0 0 15px 0;
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    width: 56px;
+    height: 56px;
   }
-  .touk-profile {
-    margin: 0 0 20px 0;
+
+  .rank-num {
+    font-size: 24px;
   }
+
+  .touk-name::after {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .touk-scores {
-    margin: 20px 0 0 0;
-    justify-content: center;
+    grid-template-columns: 1fr;
+    gap: 18px;
     width: 100%;
-    flex-wrap: wrap;
+    text-align: left;
+  }
+
+  .team-score {
+    width: 120px;
   }
 }

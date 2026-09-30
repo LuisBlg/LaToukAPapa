@@ -1,14 +1,71 @@
 <!-- PARTIE 2 (derrière) : toujours présente, elle se découvre quand la bouteille passe -->
 <main class="content">
-  <div class="ranking-container">
-    <h1 class="ranking-title">Classement des Touks</h1>
 
+  <!-- Bandeau : ciel, soleil, montagnes -->
+  <header class="hero">
+    <svg class="hero-scene" viewBox="0 0 1600 420" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="h-sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ffe3ac"/><stop offset=".5" stop-color="#f9ab75"/><stop offset="1" stop-color="#ea7566"/>
+        </linearGradient>
+        <radialGradient id="h-glow">
+          <stop offset="0" stop-color="#fff3b8"/><stop offset="1" stop-color="#fff3b8" stop-opacity="0"/>
+        </radialGradient>
+        <path id="h-pine" d="M0-64 12-40H6L16-20H6L20-2H5V8H-5V-2H-20L-6-20H-16L-6-40H-12Z"/>
+      </defs>
+
+      <rect width="1600" height="420" fill="url(#h-sky)"/>
+      <circle cx="800" cy="310" r="300" fill="url(#h-glow)" opacity=".85"/>
+      <circle cx="800" cy="318" r="92" fill="#fff0b0"/>
+
+      <!-- montagnes -->
+      <path fill="#f0917b" opacity=".8" d="M0 300 110 236 220 272 350 196 470 262 610 214 720 280 880 240 1000 288 1100 214 1210 268 1350 200 1470 262 1600 222V420H0Z"/>
+      <path fill="#ffe6c6" d="M350 196 376 210 364 224 350 212 336 226 324 211Z"/>
+      <path fill="#ffe6c6" d="M1350 200 1374 212 1362 226 1348 214 1334 228 1324 213Z"/>
+      <path fill="#ea7d6c" d="M0 350 150 282 260 322 390 250 500 318 640 292 760 344 900 300 1040 338 1180 276 1300 330 1440 286 1600 340V420H0Z"/>
+      <path fill="#c44f5f" d="M0 372C220 340 380 376 560 362S820 344 1040 366 1400 348 1600 370V420H0Z"/>
+
+      <!-- forêt -->
+      <g fill="#a8465e">
+        <use href="#h-pine" transform="translate(60 396) scale(.6)"/><use href="#h-pine" transform="translate(150 398) scale(.55)"/>
+        <use href="#h-pine" transform="translate(240 394) scale(.62)"/><use href="#h-pine" transform="translate(330 398) scale(.5)"/>
+        <use href="#h-pine" transform="translate(1270 396) scale(.55)"/><use href="#h-pine" transform="translate(1360 394) scale(.62)"/>
+        <use href="#h-pine" transform="translate(1450 398) scale(.5)"/><use href="#h-pine" transform="translate(1540 396) scale(.6)"/>
+      </g>
+      <g fill="#7b2f52">
+        <use href="#h-pine" transform="translate(30 412) scale(1.15)"/><use href="#h-pine" transform="translate(110 414) scale(.85)"/>
+        <use href="#h-pine" transform="translate(1490 414) scale(.85)"/><use href="#h-pine" transform="translate(1570 412) scale(1.15)"/>
+      </g>
+
+      <!-- lucioles -->
+      <g fill="#ffe08a">
+        <circle class="fl" cx="300" cy="352" r="3"/><circle class="fl" cx="520" cy="376" r="3" style="animation-delay:-1s"/>
+        <circle class="fl" cx="1090" cy="372" r="3" style="animation-delay:-2s"/><circle class="fl" cx="1290" cy="350" r="3" style="animation-delay:-.7s"/>
+        <circle class="fl" cx="180" cy="372" r="3" style="animation-delay:-1.6s"/><circle class="fl" cx="1420" cy="368" r="3" style="animation-delay:-2.4s"/>
+      </g>
+
+      <!-- le sol crème (se fond avec le reste de la page) -->
+      <path fill="#fff6e6" d="M0 402C260 384 520 410 800 398S1340 384 1600 402V420H0Z"/>
+    </svg>
+
+    <div class="hero-text">
+      <span class="hero-kicker">Touk à Papa</span>
+      <h1 class="ranking-title">Classement des Touks</h1>
+      <div class="ornament"><i></i></div>
+      <p class="hero-count">{{ touks.length }} touk{{ touks.length > 1 ? 's' : '' }} dégustée{{ touks.length > 1 ? 's' : '' }}</p>
+    </div>
+  </header>
+
+  <div class="ranking-container">
     <div class="touk-list">
-      <!-- Boucle Angular pour générer automatiquement une bannière par Touk -->
+      <!-- Boucle Angular pour générer automatiquement une étiquette par Touk -->
       @for (touk of touks; track touk.rank) {
-        <div class="touk-card">
-          <!-- Numéro du classement -->
-          <div class="touk-rank">#{{ touk.rank }}</div>
+        <article class="touk-card" [class.is-first]="touk.rank === 1">
+          <!-- Médaille du classement -->
+          <div class="touk-rank" [class.rank-other]="touk.rank > 3" [attr.data-rank]="touk.rank">
+            <span class="rank-no">N°</span>
+            <span class="rank-num">{{ touk.rank }}</span>
+          </div>
 
           <!-- Photo de la personne -->
           <div class="touk-profile">
@@ -18,27 +75,46 @@
           <!-- Nom et commentaire -->
           <div class="touk-info">
             <h3 class="touk-name">{{ touk.name }}</h3>
-            <p class="touk-comment">"{{ touk.comment }}"</p>
+            <p class="touk-comment">« {{ touk.comment }} »</p>
+          </div>
+
+          <!-- Carré : note de l'équipe -->
+          <div class="team-score">
+            <span class="team-label">Note de l'équipe</span>
+            <span class="team-value">{{ touk.teamScore }}<small>/10</small></span>
           </div>
 
           <!-- Les Notes -->
           <div class="touk-scores">
             <div class="score-item">
-              <span class="score-label">Goût</span>
-              <span class="score-value">{{ touk.tasteScore }}/10</span>
+              <div class="score-head">
+                <span class="score-label">Goût</span>
+                <span class="score-value">{{ touk.tasteScore }}<small>/10</small></span>
+              </div>
+              <div class="score-bar"><span class="score-fill" [style.width.%]="touk.tasteScore * 10"></span></div>
             </div>
+
             <div class="score-item">
-              <span class="score-label">Concept</span>
-              <span class="score-value">{{ touk.conceptScore }}/10</span>
+              <div class="score-head">
+                <span class="score-label">Concept</span>
+                <span class="score-value">{{ touk.conceptScore }}<small>/10</small></span>
+              </div>
+              <div class="score-bar"><span class="score-fill" [style.width.%]="touk.conceptScore * 10"></span></div>
             </div>
-            <div class="score-global">
-              <span class="score-label">Moyenne</span>
-              <span class="score-value">{{ getGlobalScore(touk.tasteScore, touk.conceptScore) }}/10</span>
+
+            <div class="score-item score-item--global">
+              <div class="score-head">
+                <span class="score-label">Moyenne</span>
+                <span class="score-value">{{ getGlobalScore(touk.tasteScore, touk.conceptScore) }}<small>/10</small></span>
+              </div>
+              <div class="score-bar"><span class="score-fill" [style.width.%]="getGlobalScore(touk.tasteScore, touk.conceptScore) * 10"></span></div>
             </div>
           </div>
-        </div>
+        </article>
       }
     </div>
+
+    <div class="ornament"><i></i></div>
   </div>
 </main>
 
