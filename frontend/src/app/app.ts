@@ -19,9 +19,9 @@ export class App {
       name: "L'Embuscade", 
       // J'ai ajouté un "/" devant "assets/" pour régler le problème de chemin
       image: "linsay.jpg", 
-      tasteScore: 6.5,            
-      conceptScore: 4.0,          
-      teamScore: 6.02,
+      tasteScore: 5.901,            
+      conceptScore: 4.17,          
+      teamScore: 6.11,
       comment: "Première touk de la saison, pas la plus facile. Malgré un concept on ne peut plus simple, notre toukeur a su tirer parti du goût mordant du pinard pour faire un breuvage à la fois agressif, mais peu fort en degrés. Mention honorable au sirop de violette, qui a trouvé sa place dans un cocktail aussi bien déstructuré qu'équilibré."
     }
   ];
