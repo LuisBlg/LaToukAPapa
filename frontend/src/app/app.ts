@@ -23,7 +23,7 @@ export class App {
       conceptScore: 4.17,          
       teamScore: 6.11,
       comment: "Première touk de la saison, pas la plus facile. Malgré un concept on ne peut plus simple, notre toukeur a su tirer parti du goût mordant du pinard pour faire un breuvage à la fois agressif, mais peu fort en degrés. Mention honorable au sirop de violette, qui a trouvé sa place dans un cocktail aussi bien déstructuré qu'équilibré."
-    }
+    },
     {
       rank: 1,
       name: "October Touk",
