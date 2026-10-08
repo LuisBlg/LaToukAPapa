@@ -15,6 +15,16 @@ export class App {
   // teamScore = la note de l'équipe (sur 10)
   touks = [
     {
+      rank: 1,
+      name: "October Touk",
+      // J'ai ajouté un "/" devant "assets/" pour régler le problème de chemin
+      image: "nathan.jpg",
+      tasteScore: 7.1,
+      conceptScore: 5.4,
+      teamScore: 7.88,
+      comment: "La touk est efficace et bien dosée. Bon, il faut l’avouer, le concept n’a malheureusement rien de révolutionnaire. En revanche, c’est une touk particulièrement efficace pour préparer un retour en minibus mouvementé. Ah oui aussi, (je dénonce) certaines personnes ont trouvé que le toukeur avait manqué d’humilité."
+    },
+    {
       rank: 2,
       name: "L'Embuscade", 
       // J'ai ajouté un "/" devant "assets/" pour régler le problème de chemin
@@ -24,16 +34,6 @@ export class App {
       teamScore: 6.11,
       comment: "Première touk de la saison, pas la plus facile. Malgré un concept on ne peut plus simple, notre toukeur a su tirer parti du goût mordant du pinard pour faire un breuvage à la fois agressif, mais peu fort en degrés. Mention honorable au sirop de violette, qui a trouvé sa place dans un cocktail aussi bien déstructuré qu'équilibré."
     },
-    {
-      rank: 1,
-      name: "October Touk",
-      // J'ai ajouté un "/" devant "assets/" pour régler le problème de chemin
-      image: "nathan.jpg",
-      tasteScore: 7.1,
-      conceptScore: 5.4,
-      teamScore: 7.88,
-      comment: "La touk est efficace et bien dosée. Bon, il faut l’avouer, le concept n’a malheureusement rien de révolutionnaire. En revanche, c’est une touk particulièrement efficace pour préparer un retour en minibus mouvementé. Ah oui aussi, (je dénonce) certaines personnes ont trouvé que le toukeur avait manqué d’humilité."
-    }
   ];
 
   getGlobalScore(taste: number, concept: number): number {
