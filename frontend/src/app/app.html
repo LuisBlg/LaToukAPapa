@@ -90,7 +90,7 @@
           </div>
 
           <!-- Les Notes : goût, concept, équipe -->
-          @if (estChef(touk.role)) {
+          @if (!estChef(touk.role)) {
             <div class="touk-scores">
               <div class="score-item">
                 <div class="score-head">
@@ -119,7 +119,7 @@
               </div>
             </div>
           }
-          @if (!estChef(touk.role)) {
+          @if (estChef(touk.role)) {
             <div class="touk-scores">
               <div class="score-item">
                 <div class="score-head">
