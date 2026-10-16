@@ -49,13 +49,13 @@ export class App {
     }
   ];
 
-  getGlobalScore(taste: number, concept: number, team: number): number {
-    return Math.round((taste + concept + team) / 3);
-  }
+getGlobalScore(taste: number, concept: number, team: number): number {
+  return Math.round(((taste + concept + team) / 3) * 100) / 100;
+}
 
-  getGlobalScoreChef(taste: number, concept: number): number {
-    return Math.round((taste + concept) / 2);
-  }
+getGlobalScoreChef(taste: number, concept: number): number {
+  return Math.round(((taste + concept) / 2) * 100) / 100;
+}
   estChef(role: string):boolean{
     return role == "chef";
   }

@@ -80,10 +80,9 @@
 
           <!-- Carré : moyenne générale -->
           <div class="avg-score">
-            <span class="avg-label">Moyenne générale</span>
             <span class="avg-value">
             {{ estChef(touk.role)
-                ? getGlobalScore(touk.tasteScore, touk.conceptScore)
+                ? getGlobalScoreChef(touk.tasteScore, touk.conceptScore)
                 : getGlobalScore(touk.tasteScore, touk.conceptScore, touk.teamScore)
             }}
             <small>/10</small>
@@ -109,15 +108,15 @@
             </div>
 
             @if (estChef(touk.role)) {
-            <div class="score-item score-item--team">
-              <div class="score-head">
-                <span class="score-label">Note de l'équipe</span>
-                <span class="score-value">{{ touk.teamScore }}<small>/10</small></span>
+              <div class="score-item score-item--team">
+                <div class="score-head">
+                  <span class="score-label">Note de l'équipe</span>
+                  <span class="score-value">{{ touk.teamScore }}<small>/10</small></span>
+                </div>
+                <div class="score-bar">
+                  <span class="score-fill" [style.width.%]="touk.teamScore * 10"></span>
+                </div>
               </div>
-              <div class="score-bar">
-                <span class="score-fill" [style.width.%]="touk.teamScore * 10"></span>
-              </div>
-            </div>
             }
           </div>
         </article>
