@@ -16,6 +16,7 @@ export class App {
   touks = [
     {
       rank: 1,
+      role:"rdm",
       name: "October Touk",
       // J'ai ajouté un "/" devant "assets/" pour régler le problème de chemin
       image: "nathan.jpg",
@@ -26,6 +27,7 @@ export class App {
     },
     {
       rank: 2,
+      role:"rdm",
       name: "L'Embuscade", 
       // J'ai ajouté un "/" devant "assets/" pour régler le problème de chemin
       image: "linsay.jpg", 
@@ -34,10 +36,28 @@ export class App {
       teamScore: 6.11,
       comment: "Première touk de la saison, pas la plus facile. Malgré un concept on ne peut plus simple, notre toukeur a su tirer parti du goût mordant du pinard pour faire un breuvage à la fois agressif, mais peu fort en degrés. Mention honorable au sirop de violette, qui a trouvé sa place dans un cocktail aussi bien déstructuré qu'équilibré."
     },
+    {
+      rank: 3,
+      role:"chef",
+      name: "LATOUKAPAPA", 
+      // J'ai ajouté un "/" devant "assets/" pour régler le problème de chemin
+      image: "louis.jpg", 
+      tasteScore: 6.7,            
+      conceptScore: 3.45,          
+      teamScore: 0,
+      comment: "Bon visiblement ma Touk àn'a pas été très appréciée. C'est pas grave je retiens qui m'a mis les pires notes."
+    }
   ];
 
-  getGlobalScore(taste: number, concept: number): number {
-    return Math.round(((taste + concept) / 2) * 100) / 100;
+  getGlobalScore(taste: number, concept: number, team: number): number {
+    return Math.round((taste + concept + team) / 3);
+  }
+
+  getGlobalScoreChef(taste: number, concept: number): number {
+    return Math.round((taste + concept) / 2);
+  }
+  estChef(role: string):boolean{
+    return role == "chef";
   }
 
   enter(ev: Event): void {
