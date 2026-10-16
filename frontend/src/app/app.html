@@ -90,24 +90,24 @@
           </div>
 
           <!-- Les Notes : goût, concept, équipe -->
-          <div class="touk-scores">
-            <div class="score-item">
-              <div class="score-head">
-                <span class="score-label">Goût</span>
-                <span class="score-value">{{ touk.tasteScore }}<small>/10</small></span>
+          @if (estChef(touk.role)) {
+            <div class="touk-scores">
+              <div class="score-item">
+                <div class="score-head">
+                  <span class="score-label">Goût</span>
+                  <span class="score-value">{{ touk.tasteScore }}<small>/10</small></span>
+                </div>
+                <div class="score-bar"><span class="score-fill" [style.width.%]="touk.tasteScore * 10"></span></div>
               </div>
-              <div class="score-bar"><span class="score-fill" [style.width.%]="touk.tasteScore * 10"></span></div>
-            </div>
 
-            <div class="score-item">
-              <div class="score-head">
-                <span class="score-label">Concept</span>
-                <span class="score-value">{{ touk.conceptScore }}<small>/10</small></span>
+              <div class="score-item">
+                <div class="score-head">
+                  <span class="score-label">Concept</span>
+                  <span class="score-value">{{ touk.conceptScore }}<small>/10</small></span>
+                </div>
+                <div class="score-bar"><span class="score-fill" [style.width.%]="touk.conceptScore * 10"></span></div>
               </div>
-              <div class="score-bar"><span class="score-fill" [style.width.%]="touk.conceptScore * 10"></span></div>
-            </div>
 
-            @if (estChef(touk.role)) {
               <div class="score-item score-item--team">
                 <div class="score-head">
                   <span class="score-label">Note de l'équipe</span>
@@ -117,8 +117,26 @@
                   <span class="score-fill" [style.width.%]="touk.teamScore * 10"></span>
                 </div>
               </div>
-            }
-          </div>
+            </div>
+          }
+          @if (!estChef(touk.role)) {
+            <div class="touk-scores">
+              <div class="score-item">
+                <div class="score-head">
+                  <span class="score-label">Goût - note de l'équipe</span>
+                  <span class="score-value">{{ touk.tasteScore }}<small>/10</small></span>
+                </div>
+                <div class="score-bar"><span class="score-fill" [style.width.%]="touk.tasteScore * 10"></span></div>
+              </div>
+
+              <div class="score-item">
+                <div class="score-head">
+                  <span class="score-label">Concept - note de l'équipe</span>
+                  <span class="score-value">{{ touk.conceptScore }}<small>/10</small></span>
+                </div>
+                <div class="score-bar"><span class="score-fill" [style.width.%]="touk.conceptScore * 10"></span></div>
+              </div>
+          }
         </article>
       }
     </div>

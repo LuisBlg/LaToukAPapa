@@ -45,17 +45,17 @@ export class App {
       tasteScore: 6.7,            
       conceptScore: 3.45,          
       teamScore: 0,
-      comment: "Bon visiblement ma Touk àn'a pas été très appréciée. C'est pas grave je retiens qui m'a mis les pires notes."
+      comment: "Bon visiblement ma Touk n'a pas été très appréciée. C'est pas grave je retiendrais qui m'a mis les pires notes pour les prochains matchs..."
     }
   ];
 
-getGlobalScore(taste: number, concept: number, team: number): number {
-  return Math.round(((taste + concept + team) / 3) * 100) / 100;
-}
+    getGlobalScore(taste: number, concept: number, team: number): number {
+      return Math.round(((taste + concept + team) / 3) * 100) / 100;
+    }
 
-getGlobalScoreChef(taste: number, concept: number): number {
-  return Math.round(((taste + concept) / 2) * 100) / 100;
-}
+    getGlobalScoreChef(taste: number, concept: number): number {
+      return Math.round(((taste + concept) / 2) * 100) / 100;
+    }
   estChef(role: string):boolean{
     return role == "chef";
   }
